@@ -3,8 +3,11 @@
 infolder="CFSv2/norientation/"
 outfolder="CFSv2/shapefiles/"
 
-dayArray=(60 75 90 105 120 135 150 165 180 195 210)
-dateArray=("2019-08-30" "2019-09-14" "2019-09-29" "2019-10-14" "2019-10-29" "2019-11-13" "2019-11-28" "2019-12-13" "2019-12-28" "2020-01-12" "2020-01-27")
+#dayArray=(60 75 90 105 120 135 150 165 180 195 210)
+#dateArray=("2019-08-30" "2019-09-14" "2019-09-29" "2019-10-14" "2019-10-29" "2019-11-13" "2019-11-28" "2019-12-13" "2019-12-28" "2020-01-12" "2020-01-27")
+
+dayArray=(1 2 3 4 5 6)
+dateArray=("30-09" "01/10-15/10" "16/10-31/10" "01/11-15/11" "16/11-30/11" "01/12")
 
 for i in $(ls $infolder*".tif"); do
     FILENAME=$(echo $i|sed 's/.*\///')
@@ -18,7 +21,7 @@ for i in $(ls $infolder*".tif"); do
 
     r.to.vect --overwrite -s input="reclass" output="shape" type="area" column="onset"
 
-    v.db.addcolumn map="shape" columns="date VARCHAR(10)"
+    v.db.addcolumn map="shape" columns="date VARCHAR(12)"
 
     for ((j=0; j<${#dayArray[@]}; j++)) do
         v.db.update map=shape column="date" value=${dateArray[$j]} where="onset= ${dayArray[$j]}"
