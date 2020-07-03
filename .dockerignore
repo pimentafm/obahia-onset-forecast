@@ -1,0 +1,8 @@
+*.sh
+*.py
+/CFSv2/
+Makefile
+/utils/
+*.ncl
+*.tif
+*.ipynb
