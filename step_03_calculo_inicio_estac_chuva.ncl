@@ -122,8 +122,6 @@ do mes = 0,3
 				delete(dumdims)
 				delete(varin1)
 			else
-						
-
 				mes_array = (/stringtointeger(meses(mes))/)
 				dia_array = (/stringtointeger(diasmes(dia))/)
 				daysyear_ajust = 0

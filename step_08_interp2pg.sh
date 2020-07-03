@@ -1,10 +1,6 @@
 #!/bin/bash
 
 infolder="CFSv2/norientation/"
-outfolder="CFSv2/shapefiles/"
-
-#dayArray=(60 75 90 105 120 135 150 165 180 195 210)
-#dateArray=("2019-08-30" "2019-09-14" "2019-09-29" "2019-10-14" "2019-10-29" "2019-11-13" "2019-11-28" "2019-12-13" "2019-12-28" "2020-01-12" "2020-01-27")
 
 dayArray=(1 2 3 4 5 6)
 dateArray=("30-09" "01/10-15/10" "16/10-31/10" "01/11-15/11" "16/11-30/11" "01/12")
@@ -32,7 +28,14 @@ for i in $(ls $infolder*".tif"); do
     v.generalize --overwrite input="lang" output="chaiken" method="chaiken" threshold=1
 
     db.login --overwrite driver=pg database=obahia user=geonode password=uppQAOFa host=obahia.dea.ufv.br port=5432
-    v.out.postgis --overwrite input="chaiken" type="area" output=PG:dbname=obahia output_layer=vector.$FILENAME options="SRID=4326"
+    v.out.postgis --overwrite input="chaiken" type="area" output=PG:dbname=obahia output_layer=vector."onset_forecast" options="SRID=4326"
 
     #v.out.ogr --overwrite -s -e input="chaiken" type="area" output=$outfolder$FILENAME".shp" format="ESRI_Shapefile"
 done
+
+
+rm $infolder*.tif
+rm CFSv2/soma/*.nc
+rm CFSv2/onsetforecast/*.nc
+rm CFSv2/geotiff/*.tif
+

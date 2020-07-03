@@ -5,6 +5,8 @@ outputdata="CFSv2/netcdf/"
 
 gridfile="utils/grid.txt"
 
+cp $inputdata*.grb2 CFSv2/grb2_backup
+
 for i in $(ls $inputdata*.grb2); do
   FILEDATE=$(echo $i|sed 's/.*\///')
   FILEDATE=$(echo $FILEDATE|sed -r 's/prate.01.//g')
@@ -23,9 +25,9 @@ for i in $(ls $inputdata*.grb2); do
   cdo setunit,"mm*d-1" $i".reassignedatetime.nc" $i".nc"
 done
 
-# Remove unused data
+# # Remove unused data
 shopt -s extglob
-rm -f $inputdata!(*.grb2|*.grb2.nc)
+rm -f $inputdata!(*.grb2.nc)
 
-# Change files to netcdf directory
+# # Change files to netcdf directory
 mv  $inputdata*.nc $outputdata
