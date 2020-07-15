@@ -1,2 +1,8 @@
 CFSv2/
 .ipynb_checkpoints/
+*.xml
+*.grb
+*.grb2
+*.nc
+*.nc4
+*.tif
