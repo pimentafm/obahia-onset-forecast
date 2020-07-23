@@ -1,10 +1,10 @@
 FROM debian:buster-20200422-slim
 
 #MAINTAINER Matheus Lucas <paramatheuslucas@yhaoo.com.br>
-LABEL versao="1.0"
-LABEL descricao="teste descricao"
-LABEL instituicao="Grupo de Pesquisa em Interacao Atmosfera-Biosfera - UFV <http://www.biosfera.dea.ufv.br>"
-LABEL mantenedores="Matheus Lucas <paramatheuslucas@yahoo.com.br> - Fernando Pimenta <fernando.m.pimenta@ufv.br>"
+LABEL version="1.0"
+LABEL description="Forecast of the rainy season onset"
+LABEL instituicao="Research Group on Atmosphere-Biosphere Interaaction - UFV <http://www.biosfera.dea.ufv.br>"
+LABEL maintainers="Matheus Lucas <paramatheuslucas@yahoo.com.br> - Fernando Pimenta <fernando.m.pimenta@ufv.br>"
 
 RUN mkdir /onset-forecast
 WORKDIR /onset-forecast

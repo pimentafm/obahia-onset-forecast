@@ -22,8 +22,11 @@ for filename in files:
     outoday_mean = mean.outoday.rio.set_spatial_dims('lon', 'lat')
     #outoday_mean.rio.to_raster(outfolder+filename+'.tif')
 
-    mask_lon = (outoday_mean.lon >= -49.2188960804658393) & (outoday_mean.lon <= -40.7814055050120032)
-    mask_lat = (outoday_mean.lat >= -17.0078089375000019) & (outoday_mean.lat <= -8.5039080625000008)
+    mask_lon = (outoday_mean.lon >= -83.9066156125536082) & (outoday_mean.lon <= -35.1566778444776276)
+    mask_lat = (outoday_mean.lat >= -17.9526924946241913) & (outoday_mean.lat <= -0.0000000438756413)
+
+    # mask_lon = (outoday_mean.lon >= -49.2188960804658393) & (outoday_mean.lon <= -40.7814055050120032)
+    # mask_lat = (outoday_mean.lat >= -17.0078089375000019) & (outoday_mean.lat <= -8.5039080625000008)
 
     croped_outoday_mean = outoday_mean.where(mask_lon & mask_lat, drop=True)
 

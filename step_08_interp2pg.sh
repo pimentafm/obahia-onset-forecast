@@ -43,8 +43,8 @@ for i in $(ls $infolder*".tif"); do
 #   g.remove -i -f -b type=raster,vector pattern=*
 done
 
-rm -rf $infolder*.tif
-rm -rf CFSv2/soma/*.nc
-rm -rf CFSv2/onsetforecast/*.nc
-rm -rf CFSv2/geotiff/*.tif
+#rm -rf $infolder*.tif
+#rm -rf CFSv2/soma/*.nc
+#rm -rf CFSv2/onsetforecast/*.nc
+#rm -rf CFSv2/geotiff/*.tif
 

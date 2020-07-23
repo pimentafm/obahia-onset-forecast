@@ -1,11 +1,9 @@
-# Build a docker image based on fedora rawhide with apache and mapserver
-BUILDNAME=onset
-BUILDTAG=test
+# Build docker image
+BUILDNAME=obahia
+BUILDTAG=onsetforecast
 
-CONTAINERNAME=onset-forecast
-
-onset-image:
+gen-onset-image:
 	docker build -t "$(BUILDNAME):$(BUILDTAG)" -f Dockerfile .
 
-run-container:
+run-onset-container:
 	docker run --rm --privileged=true -e tz=america/sao_paulo -v $(shell pwd):/onset-forecast:rw $(BUILDNAME):$(BUILDTAG)
