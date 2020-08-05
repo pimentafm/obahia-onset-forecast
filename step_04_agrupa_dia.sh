@@ -9,8 +9,7 @@ meses=(07 08 09 10)
 #ano=(systema(ano)
 diasmes=(01 27 28 29 30 31)
 
-#ano=`date +%Y`
-ano=2020
+ano=`date +%Y`
 
 infolder="CFSv2/onsetforecast/"
 outfolder="CFSv2/onsetforecast/"

@@ -12,9 +12,9 @@ for i in $(ls $infolder*".tif"); do
     FILENAME=$(echo $i|sed 's/.*\///')
     FILENAME=$(echo $FILENAME|sed -r 's/.tif//g')
 
-    DATE=${FILENAME:15:23}
+    #DATE=${FILENAME:15:23}
 
-    r.in.gdal --overwrite -o input="utils/mae"$DATE".tif" output="MAE"
+    r.in.gdal --overwrite -o input="utils/mae_onset.tif" output="MAE"
 
     r.in.gdal --overwrite -o input=$i output=$FILENAME
 

@@ -12,18 +12,8 @@ sufix=".daily.grb2.nc"
 
 hora=(00 06 12 18)
 meses=(07 08 09 10)
-# ano=(2011 2012 2013 2014 2015 2016 2017 2018)
 
-#ano=(2020) #FALTA AUTOMATIZAR CRIACAO DE SUB DIRETORIO..... !!!!
-yyano=`date +%Y`
-
-ano=2020
-
-echo $yyano
-
-#ano=sytem(ano)
-
-# [ ! -d $dirDownName ] && { mkdir $dirDownName; }
+ano=`date +%Y`
 
 diasmes=(01 27 28 29 30 31)
 	infolder="CFSv2/netcdf/"
@@ -65,4 +55,3 @@ diasmes=(01 27 28 29 30 31)
 	    done
 	    mes=$[mes+1]
 	done
-

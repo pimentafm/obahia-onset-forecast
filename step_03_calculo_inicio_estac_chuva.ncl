@@ -16,9 +16,7 @@
 
 begin ;SCRIPT
 
-; systemfunc não funciona
-ano = 2020 ;systemfunc("date +%Y")
-
+ano = stringtointeger(systemfunc("date +%Y"))
 
 infolder		=	"CFSv2/soma/"
 

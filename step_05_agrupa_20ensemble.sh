@@ -8,8 +8,7 @@ meses=(07 08 09 10)
 #ano=(system)
 diasmes=(01 27 28 29 30 31)
 
-#ano=`date +%Y`
-ano=2020
+ano=`date +%Y`
 
 #ajustar diretorios...
 infolder="CFSv2/onsetforecast/" #aa_grid100x100/sem_preench/"
