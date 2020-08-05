@@ -15,7 +15,7 @@ meses=(07 08 09 10)
 
 ano=`date +%Y`
 
-diasmes=(01 27 28 29 30 31)
+diasmes=(01 02 03 04 27 28 29 30 31)
 	infolder="CFSv2/netcdf/"
 	outfolder="CFSv2/soma/"
 
@@ -23,7 +23,7 @@ diasmes=(01 27 28 29 30 31)
 	while [ $mes -le 3 ]
 	do 
 		d=0
-	    while [ $d -le 5 ]
+	    while [ $d -le 8 ]
 	    do
 	    	h=0
 	    	while [ $h -le 3 ]

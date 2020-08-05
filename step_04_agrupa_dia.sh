@@ -7,7 +7,7 @@ fnamean="mean_daily_"
 hora=(00 06 12 18)
 meses=(07 08 09 10)
 #ano=(systema(ano)
-diasmes=(01 27 28 29 30 31)
+diasmes=(01 02 03 04 27 28 29 30 31)
 
 ano=`date +%Y`
 
@@ -18,7 +18,7 @@ outfolder="CFSv2/onsetforecast/"
         while [ $mes -le 3 ]
         do
             d=0
-            while [ $d -le 5 ]
+            while [ $d -le 8 ]
             do
                     outname=$fname$ano${meses[mes]}${diasmes[d]}$sufix
                     outnamemean=$fnamean${meses[mes]}${diasmes[d]}$sufix

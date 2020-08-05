@@ -46,7 +46,7 @@ timeaxis		=	0	;0 time in ag year days, 1 time in actual DOY
 ;nyears = eyear - syear + 1
 ;ARRAYS PARA INSERÇÃO DOS LOOPS
 hour 	= 	(/"00","06","12","18"/) ; ->loop dentro do array
-diasmes = 	(/"01","27","28","29","30","31"/)
+diasmes = 	(/"01","02","03","04","27","28","29","30","31"/)
 meses 	= 	(/"07","08","09","10"/)
 
 ; ----------------- arquivos e dados para correção de bias ------------------------------------
@@ -76,7 +76,7 @@ nlon = dimsvar(1)
 
 year = ano
 do mes = 0,3
-	do dia = 0,5
+	do dia = 0,8
 		do hora = 0,3
 		
 		if (.not. fileexists(infolder + prefix + ano + meses(mes) + diasmes(dia) + hour(hora) + suffix)) then
