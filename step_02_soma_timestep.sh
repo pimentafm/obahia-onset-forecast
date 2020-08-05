@@ -14,19 +14,18 @@ hora=(00 06 12 18)
 meses=(07 08 09 10)
 # ano=(2011 2012 2013 2014 2015 2016 2017 2018)
 
-ano=(2019) #FALTA AUTOMATIZAR CRIACAO DE SUB DIRETORIO..... !!!!
-#ano=`date +%Y`
+#ano=(2020) #FALTA AUTOMATIZAR CRIACAO DE SUB DIRETORIO..... !!!!
+yyano=`date +%Y`
+
+ano=2020
+
+echo $yyano
 
 #ano=sytem(ano)
 
 # [ ! -d $dirDownName ] && { mkdir $dirDownName; }
 
 diasmes=(01 27 28 29 30 31)
-
-y=0
-#while [ $y -le 7 ]
-#do
-
 	infolder="CFSv2/netcdf/"
 	outfolder="CFSv2/soma/"
 
@@ -40,24 +39,24 @@ y=0
 	    	while [ $h -le 3 ]
 	    	do
 
-	    		outname=$prefix${ano[y]}${meses[mes]}${diasmes[d]}${hora[h]}$sufix
+	    		outname=$prefix${ano}${meses[mes]}${diasmes[d]}${hora[h]}$sufix
 	    		
-	    		echo $infolder$prefix${ano[y]}${meses[mes]}${diasmes[d]}${hora[h]}$sufix
+	    		echo $infolder$prefix${ano}${meses[mes]}${diasmes[d]}${hora[h]}$sufix
 
 	    		if [ $h -eq 0 ]
     			then
-	    			cdo timselsum,4 -setmissval,-9999.9 $infolder$prefix${ano[y]}${meses[mes]}${diasmes[d]}${hora[h]}$sufix $outfolder$outname
+	    			cdo timselsum,4 -setmissval,-9999.9 $infolder$prefix${ano}${meses[mes]}${diasmes[d]}${hora[h]}$sufix $outfolder$outname
 	    		
 	    		elif [ $h -eq 1 ]
     			then
-	    			cdo timselsum,4,3 -setmissval,-9999.9 $infolder$prefix${ano[y]}${meses[mes]}${diasmes[d]}${hora[h]}$sufix $outfolder$outname
+	    			cdo timselsum,4,3 -setmissval,-9999.9 $infolder$prefix${ano}${meses[mes]}${diasmes[d]}${hora[h]}$sufix $outfolder$outname
 	    		
 	    		elif [ $h -eq 2 ]
     			then
-	    			cdo timselsum,4,2 -setmissval,-9999.9 $infolder$prefix${ano[y]}${meses[mes]}${diasmes[d]}${hora[h]}$sufix $outfolder$outname
+	    			cdo timselsum,4,2 -setmissval,-9999.9 $infolder$prefix${ano}${meses[mes]}${diasmes[d]}${hora[h]}$sufix $outfolder$outname
 	    		
 	    		else
-	    			cdo timselsum,4,1 -setmissval,-9999.9 $infolder$prefix${ano[y]}${meses[mes]}${diasmes[d]}${hora[h]}$sufix $outfolder$outname
+	    			cdo timselsum,4,1 -setmissval,-9999.9 $infolder$prefix${ano}${meses[mes]}${diasmes[d]}${hora[h]}$sufix $outfolder$outname
 	    		fi
 	    		
 	    		h=$[h+1]
@@ -66,6 +65,4 @@ y=0
 	    done
 	    mes=$[mes+1]
 	done
-	#y=$[y+1]
-#done
 

@@ -16,8 +16,10 @@
 
 begin ;SCRIPT
 
-;ano = systemfunc("date +%Y")
-ano = 2019
+; systemfunc não funciona
+ano = 2020 ;systemfunc("date +%Y")
+
+
 infolder		=	"CFSv2/soma/"
 
 ; outfolder 		=	"/home/matheus/cfsBot_v2/CFSv2/CFSv2_daily/"+ano+"/calc_inicio_chuva/"
@@ -129,7 +131,7 @@ do mes = 0,3
 				print(daysyear_ajust)
 				fim_ano = day_of_year(ano, 12, 31)
 
-				varin = varin1;(:fim_ano-daysyear_ajust-1,:,:);recebe do inicio do arquivo até o dia 31/12
+				varin = varin1(:fim_ano-daysyear_ajust+30,:,:);recebe do inicio do arquivo até o dia 31/12
 				varin@_FillValue = -9999.9
 				varin@missing_value= -9999.9
 				printVarSummary(varin)
@@ -142,7 +144,7 @@ do mes = 0,3
 				varin = varin@_FillValue
 
 				; Criação do arquivo de chuvas-----------------------------------------
-				varin = varin1;(:fim_ano-daysyear_ajust-1,:,:)
+				varin = varin1(:fim_ano-daysyear_ajust+30,:,:)
 ; 				-----------------------------------------------------------------------
 
 				printVarSummary(varin)
@@ -209,30 +211,34 @@ do mes = 0,3
 
 				do day = 0,ndays-1
 				
-					if (day+daysyear_ajust-daysyear .le.30) then 
+					if (day+daysyear_ajust-daysyear .le.29) then 
 											; LINEAR SCALING (LSC)
 						prec_ajustada(day,:,:) = where(julfore(:,:) .ne. 0., varin(day,:,:)*(julobs(:,:)/julfore(:,:)), varin(day,:,:))
 					end if
-					if (day+daysyear_ajust-daysyear.ge.31 .and. day+daysyear_ajust-daysyear.le.61) then 
+					if (day+daysyear_ajust-daysyear.ge.30 .and. day+daysyear_ajust-daysyear.le.60) then 
 											; LINEAR SCALING (LSC)
 						prec_ajustada(day,:,:) = where(agofore(:,:) .ne. 0., varin(day,:,:)*(agoobs(:,:)/agofore(:,:)), varin(day,:,:))
 					end if
-					if (day+daysyear_ajust-daysyear.ge.62 .and. day+daysyear_ajust-daysyear.le.91) then 
+					if (day+daysyear_ajust-daysyear.ge.61 .and. day+daysyear_ajust-daysyear.le.90) then 
 											; LINEAR SCALING (LSC)
 						prec_ajustada(day,:,:) = where(setfore(:,:) .ne. 0., varin(day,:,:)*(setobs(:,:)/setfore(:,:)), varin(day,:,:))
 					end if
-					if (day+daysyear_ajust-daysyear.ge.92 .and. day+daysyear_ajust-daysyear.le.122) then 
+					if (day+daysyear_ajust-daysyear.ge.91 .and. day+daysyear_ajust-daysyear.le.121) then 
 											; LINEAR SCALING (LSC)
 						prec_ajustada(day,:,:) = where(outfore(:,:) .ne. 0., varin(day,:,:)*(outobs(:,:)/outfore(:,:)), varin(day,:,:))
 					end if
-					if (day+daysyear_ajust-daysyear.ge.123 .and. day+daysyear_ajust-daysyear.le.153) then 
+					if (day+daysyear_ajust-daysyear.ge.122 .and. day+daysyear_ajust-daysyear.le.152) then 
 											; LINEAR SCALING (LSC)
 						prec_ajustada(day,:,:) = where(novfore(:,:) .ne. 0., varin(day,:,:)*(novobs(:,:)/novfore(:,:)), varin(day,:,:))
 					end if
-					if (day+daysyear_ajust-daysyear.ge.154) then 
+					if (day+daysyear_ajust-daysyear.ge.153 .and. day+daysyear_ajust-daysyear.le. 183) then 
 											; LINEAR SCALING (LSC)
 						prec_ajustada(day,:,:) = where(dezfore(:,:) .ne. 0., varin(day,:,:)*(dezobs(:,:)/dezfore(:,:)), varin(day,:,:))
 					end if
+                    if (day+daysyear_ajust-daysyear.gt.183 ) then 
+                                            ; LINEAR SCALING (LSC)
+                        prec_ajustada(day,:,:) = varin(day,:,:);where(dezfore(:,:) .ne. 0., varin(day,:,:)*(dezobs(:,:)/dezfore(:,:)), varin(day,:,:))
+                    end if
 				end do 
 
 				do day = 1,ndays-1
@@ -326,7 +332,7 @@ do mes = 0,3
 				; dumarq->prec_mean = avgrain
 				; dumarq->prec_mean_obs = prec_mean_obs
 				; dumarq->ajuste_bias = ajuste_bias
-				; dumarq->prec_ajustada = prec_ajustada
+				dumarq->prec_ajustada = prec_ajustada
 				dumarq->mdaa = mdaa
 				dumarq->mdaaday = mdaaday
 				dumarq->minaaday = minaaday

@@ -10,9 +10,7 @@ meses=(07 08 09 10)
 diasmes=(01 27 28 29 30 31)
 
 #ano=`date +%Y`
-
-#debug...
-ano=2019
+ano=2020
 
 infolder="CFSv2/onsetforecast/"
 outfolder="CFSv2/onsetforecast/"
