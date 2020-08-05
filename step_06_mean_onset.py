@@ -36,8 +36,3 @@ for filename in files:
     interpolation = croped_outoday_mean.interp({'lat':new_lat, 'lon':new_lon})
     interpolation = interpolation.rio.set_spatial_dims('lon', 'lat')
     interpolation.rio.to_raster(outfolder+filename+'.tif')
-
-
-
-
-
