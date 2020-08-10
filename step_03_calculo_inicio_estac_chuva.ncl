@@ -129,7 +129,7 @@ do mes = 0,3
 				print(daysyear_ajust)
 				fim_ano = day_of_year(ano, 12, 31)
 
-				varin = varin1(:fim_ano-daysyear_ajust+30,:,:);recebe do inicio do arquivo até o dia 31/12
+				varin = varin1;(:fim_ano-daysyear_ajust+30,:,:);recebe do inicio do arquivo até o dia 31/12
 				varin@_FillValue = -9999.9
 				varin@missing_value= -9999.9
 				printVarSummary(varin)
@@ -142,7 +142,7 @@ do mes = 0,3
 				varin = varin@_FillValue
 
 				; Criação do arquivo de chuvas-----------------------------------------
-				varin = varin1(:fim_ano-daysyear_ajust+30,:,:)
+				varin = varin1;(:fim_ano-daysyear_ajust+30,:,:)
 ; 				-----------------------------------------------------------------------
 
 				printVarSummary(varin)
@@ -229,14 +229,14 @@ do mes = 0,3
 											; LINEAR SCALING (LSC)
 						prec_ajustada(day,:,:) = where(novfore(:,:) .ne. 0., varin(day,:,:)*(novobs(:,:)/novfore(:,:)), varin(day,:,:))
 					end if
-					if (day+daysyear_ajust-daysyear.ge.153 .and. day+daysyear_ajust-daysyear.le. 183) then 
+					if (day+daysyear_ajust-daysyear.ge.153); .and. day+daysyear_ajust-daysyear.le. 183) then 
 											; LINEAR SCALING (LSC)
 						prec_ajustada(day,:,:) = where(dezfore(:,:) .ne. 0., varin(day,:,:)*(dezobs(:,:)/dezfore(:,:)), varin(day,:,:))
 					end if
-                    if (day+daysyear_ajust-daysyear.gt.183 ) then 
-                                            ; LINEAR SCALING (LSC)
-                        prec_ajustada(day,:,:) = varin(day,:,:);where(dezfore(:,:) .ne. 0., varin(day,:,:)*(dezobs(:,:)/dezfore(:,:)), varin(day,:,:))
-                    end if
+                    ; if (day+daysyear_ajust-daysyear.gt.183 ) then 
+                    ;                         ; LINEAR SCALING (LSC)
+                    ;     prec_ajustada(day,:,:) = varin(day,:,:);where(dezfore(:,:) .ne. 0., varin(day,:,:)*(dezobs(:,:)/dezfore(:,:)), varin(day,:,:))
+                    ; end if
 				end do 
 
 				do day = 1,ndays-1
