@@ -5,7 +5,7 @@ outfolder="CFSv2/shapefiles/"
 
 
 dayArray=(1 2 3 4 5 6 7 8 9)
-dateArray=("15/09" "15/09-30/09" "30/09-15/10" "15/10-30/10" "30/10-15/11" "15/11-30/11" "30/11-15/12" "35/12-30/12" "30/12")
+dateArray=("15/09" "15/09-30/09" "30/09-15/10" "15/10-30/10" "30/10-15/11" "15/11-30/11" "30/11-15/12" "15/12-30/12" "30/12")
 
 year=2020
 
@@ -37,7 +37,7 @@ for i in $(ls $infolder*".tif"); do
 
     v.rast.stats -c map="chaiken" raster="MAE" column_prefix="mae" method="average,median"
 
-    db.login --overwrite driver=pg database=obahia user=geonode password=<password> host=obahia.dea.ufv.br port=<port>
+    db.login --overwrite driver=pg database=<database> user=<user> password=<password> host=obahia.dea.ufv.br port=5432
     v.out.postgis --overwrite input="chaiken" type="area" output=PG:dbname=obahia output_layer=vector."onset_forecast" options="SRID=4326"
 
     v.db.renamecolumn map="chaiken" column="mae_average,mae_avr"

@@ -12,7 +12,7 @@ ano=`date +%Y`
 
 #ajustar diretorios...
 infolder="CFSv2/onsetforecast/" #aa_grid100x100/sem_preench/"
-outfolder="CFSv2/onsetforecas/"
+outfolder="CFSv2/onsetforecast/"
         
                 
 rm $infolder$fname$ano"0801.nc"
