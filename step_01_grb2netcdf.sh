@@ -17,9 +17,10 @@ for i in $(ls $inputdata*.grb2); do
   hour="${FILEDATE:8:2}:${FILEDATE:10:2}:${FILEDATE:12:2}"
 
   grib_to_netcdf $i -o $i".converted.nc"
-  cdo setgrid,$gridfile $i".converted.nc" $i".translated.nc"
-  cdo sellonlatbox,-83.9066462049297286,-35.1567006578632473,-17.9527409283651238,-0.0000199766622649 $i".translated.nc" $i".sliced.nc"
-  cdo -b F32 -mulc,3600 $i".sliced.nc" $i".mmday.nc"
+  cdo remapbil,$gridfile $i".converted.nc" $i".translated.nc"
+  # cdo setgrid,$gridfile $i".converted.nc" $i".translated.nc"
+  # cdo sellonlatbox,-83.9066462049297286,-35.1567006578632473,-17.9527409283651238,-0.0000199766622649 $i".translated.nc" $i".sliced.nc"
+  cdo -b F32 -mulc,3600 $i".translated.nc" $i".mmday.nc"
   ncrename -h -O -v "prate","PRATE_P0_L1_GGA0" $i".mmday.nc"
   cdo settaxis,$date,$hour $i".mmday.nc" $i".reassignedatetime.nc"
   cdo setunit,"mm*d-1" $i".reassignedatetime.nc" $i".nc"
