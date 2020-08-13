@@ -37,7 +37,7 @@ for i in $(ls $infolder*".tif"); do
 
     v.rast.stats -c map="chaiken" raster="MAE" column_prefix="mae" method="average,median"
 
-    db.login --overwrite driver=pg database=<database> user=<user> password=<password> host=obahia.dea.ufv.br port=5432
+    db.login --overwrite driver=pg database=obahia user=<user> password=<password> host=obahia.dea.ufv.br port=5432
     v.out.postgis --overwrite input="chaiken" type="area" output=PG:dbname=obahia output_layer=vector."onset_forecast" options="SRID=4326"
 
     v.db.renamecolumn map="chaiken" column="mae_average,mae_avr"
