@@ -10,7 +10,7 @@ RUN mkdir /onset-forecast
 WORKDIR /onset-forecast
 
 # apt install...
-RUN apt-get -y update && apt-get -y install cdo nco libeccodes-tools ncl-ncarg python3.7-dev python3-pip bash grass
+RUN apt-get -y update && apt-get -y install cdo nco libeccodes-tools ncl-ncarg python3.7-dev python3-pip bash grass zip
 # pip Install...
 RUN pip3 --no-cache-dir install --upgrade pip && pip3 --no-cache-dir install xarray numpy rioxarray netCDF4 julian
 

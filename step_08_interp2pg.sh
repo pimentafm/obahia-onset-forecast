@@ -9,6 +9,8 @@ dateArray=("15/09" "15/09-30/09" "30/09-15/10" "15/10-30/10" "30/10-15/11" "15/1
 
 year=2020
 
+v.in.ogr -o input="utils/clipextent.shp" output="clipextent"
+
 for i in $(ls $infolder*".tif"); do
     FILENAME=$(echo $i|sed 's/.*\///')
     FILENAME=$(echo $FILENAME|sed -r 's/.tif//g')
@@ -41,13 +43,16 @@ for i in $(ls $infolder*".tif"); do
     v.out.postgis --overwrite input="chaiken" type="area" output=PG:dbname=obahia output_layer=vector."onset_forecast" options="SRID=4326"
 
     v.db.renamecolumn map="chaiken" column="mae_average,mae_avr"
-    v.out.ogr --overwrite -s -e input="chaiken" type="area" output=$outfolder$FILENAME".shp" format="ESRI_Shapefile"
 
-#   g.remove -i -f -b type=raster,vector pattern=*
+    v.clip --overwrite input="chaiken" clip="clipextent" output="clipped"
+
+    v.out.ogr --overwrite -s -e input="clipped" type="area" output=$outfolder"onset_forecast.shp" format="ESRI_Shapefile"
+
+    zip -j $outfolder"onset_forecast.zip" $outfolder*
 done
 
-rm -rf $infolder*.tif
-rm -rf CFSv2/soma/*.nc
-rm -rf CFSv2/onsetforecast/*.nc
-rm -rf CFSv2/geotiff/*.tif
+# rm -rf $infolder*.tif
+# rm -rf CFSv2/soma/*.nc
+# rm -rf CFSv2/onsetforecast/*.nc
+# rm -rf CFSv2/geotiff/*.tif
 
